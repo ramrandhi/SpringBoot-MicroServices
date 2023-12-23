@@ -3,15 +3,27 @@ package com.ramrandhi.productservice.entities;
 import java.math.BigDecimal;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 
 
-@Document(value="PRODUCT")
+
+@Entity
+@Table(name = "PRODUCT")
 public class Product {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private String id;
+	@Column(name = "NAME")
 	private String name;
+	@Column(name = "DESCRIPTION")
 	private String description;
+	@Column(name = "PRICE")
 	private BigDecimal price;
 	public Product(String id, String name, String description, BigDecimal price) {
 		super();
@@ -51,40 +63,4 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
-	
-	 public static ProductBuilder builder() {
-	        return new ProductBuilder();
-	    }
-
-	    public static class ProductBuilder {
-	        private String name;
-	        private String description;
-	        private BigDecimal price;
-
-	        private ProductBuilder() {
-	        }
-
-	        public ProductBuilder name(String name) {
-	            this.name = name;
-	            return this;
-	        }
-
-	        public ProductBuilder description(String description) {
-	            this.description = description;
-	            return this;
-	        }
-
-	        public ProductBuilder price(BigDecimal price) {
-	            this.price = price;
-	            return this;
-	        }
-
-	        public Product build() {
-	            Product product = new Product();
-	            product.name = this.name;
-	            product.description = this.description;
-	            product.price = this.price;
-	            return product;
-	        }
-	    }
 }

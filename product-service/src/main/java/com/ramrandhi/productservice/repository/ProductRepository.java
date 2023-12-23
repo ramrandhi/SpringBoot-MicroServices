@@ -1,9 +1,11 @@
 package com.ramrandhi.productservice.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.ramrandhi.productservice.entities.Product;
 
-public interface ProductRepository extends MongoRepository<Product, String>{
+@Repository
+public interface ProductRepository extends JpaRepository<Product, String>{
 
 }

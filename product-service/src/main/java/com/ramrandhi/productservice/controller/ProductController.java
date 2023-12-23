@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ramrandhi.productservice.dto.ProductRequest;
+import com.ramrandhi.productservice.entities.Product;
 import com.ramrandhi.productservice.service.ProductService;
 
 
@@ -21,7 +21,7 @@ public class ProductController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createproduct(@RequestBody ProductRequest productrequest) {
-		
+	public void createproduct(@RequestBody Product product) {
+		productService.createProduct(product);
 	}
 }
